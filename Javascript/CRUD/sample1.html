@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <label for="fname">First name : </label>
+      <input type="text" id="fname" />
+      <br />
+      <button onclick="getUserInfo()" type="button">Get User</button>
+    </form>
+    <hr />
+    <div id="demo"></div>
+    <script>
+      var users = [];
+      function getUserInfo() {
+        var fname = document.getElementById("fname").value;
+        users.push(fname);
+        console.log(users);
+        displayUsers();
+      }
+
+      function displayUsers() {
+        var results = "";
+        users.forEach(function (user) {
+          results = results + user + "<br>";
+        });
+        document.getElementById("demo").innerHTML = results;
+      }
+    </script>
+  </body>
+</html>
