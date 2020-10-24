@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asynchronous Javscript And XML</title>
+  </head>
+  <body>
+    <button onclick="getData()">Get Data</button>
+    <div></div>
+    <script>
+      var data = [];
+      function getData() {
+        var getInfo = new XMLHttpRequest(); // Built In Class to Communicate Between Server and Browser
+        getInfo.onreadystatechange = function () {
+          if (getInfo.status == 200 && getInfo.readyState == 4) {
+            console.log("Before Coneverting JSON", getInfo.response);
+            data = JSON.parse(getInfo.response);
+            console.log("After Converting JSON", data);
+            displayData();
+          }
+        };
+        getInfo.open("GET", "../Data/data.json");
+        getInfo.send();
+      }
+
+      function displayData() {
+        var results = "";
+        data.forEach(function (user) {
+          results = results + user.fname + "<br/>";
+        });
+        document.querySelector("div").innerHTML = results;
+      }
+    </script>
+  </body>
+</html>

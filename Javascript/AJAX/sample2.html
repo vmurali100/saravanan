@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting Data From Server Through Fetch Method</title>
+  </head>
+  <body>
+    <button onclick="getData()">Get Data</button>
+    <div></div>
+    <script>
+      var data = [];
+      function getData() {
+        fetch("../Data/data.json")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (res) {
+            data = res;
+            displayUsers();
+          });
+      }
+
+      function displayUsers() {
+        var results = "";
+        data.forEach(function (user) {
+          results = results + user.fname + "<br>";
+        });
+        document.querySelector("div").innerHTML = results;
+      }
+    </script>
+  </body>
+</html>
